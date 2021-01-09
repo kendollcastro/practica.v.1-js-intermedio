@@ -50,24 +50,54 @@ function imprimirError(mensaje) {
 // TERMINA EL BOILERPLATE
 
 // COMIENZA ACA
-function hacerOperacion() {
-  const input1 = parseInt(document.querySelector('#input1').value);
-  const input2 = parseInt(document.querySelector('#input2').value);
-  const operacion = document.querySelectorAll('#operacion').value;
-  let total; "";
-  
-  if(operacion === 'Sumar'){
-    total = input1 + input2;
-  } else if(operacion === 'Restar'){
-    total = input1 - input2;
-  }else if(operacion === 'Multiplicar'){
-    total = input1 * input2;
-  }else if(operacion === 'Dividir'){
-    total = input1 / input2;
+
+//Funcion de sumar
+function sumar(numero1, numero2){
+  return numero1 + numero2;
+}
+
+//Funcion de restar
+function restar(numero1, numero2){
+  return numero1 - numero2;
+}
+
+//Funcion de Multiplicar
+function multiplicar(numero1, numero2){
+  return numero1 * numero2;
+}
+
+//Funcion de Dividir
+function dividir(numero1, numero2) {
+  return numero1 / numero2;
+}
+
+//Funcion para calcular los resultados
+function calcularResultados () {
+  const numero1 = parseInt(input1.value, 10);
+  const numero2 = parseInt(input2.value, 10);
+  if(operacion.value === 'sumar'){
+    imprimirResultado(sumar(numero1, numero2));
+  } else if(operacion.value === 'restar'){
+    imprimirResultado(restar(numero1, numero2));
+  }else if(operacion.value === 'multiplicar'){
+    imprimirResultado(multiplicar(numero1, numero2));
+  }else {
+    imprimirResultado(dividir(numero1, numero2));
   }
-  //document.querySelector(imprimirResultado(total));
-  console.log(imprimirResultado(total));
-  console.log(input1 + input2);
-  
+}
+
+//Funcion de usabilidad
+function hacerOperacion() {
+  if(input1.value === ""){
+    imprimirError('Ingrese un numero en el campo numero uno')
+  } else if(input2.value === ""){
+    imprimirError('Ingrese un numero en el campo numero dos')
+  } else if(operacion.value === ""){
+    imprimirError('Seleccione un metodo de operación')
+  } else {
+    calcularResultados();
+  }
 };
 
+document.querySelector("button").addEventListener("click", hacerOperacion);
+  
